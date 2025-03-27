@@ -64,7 +64,7 @@ int main() {
 				default:
 					printf("\tInvalid input.\n\n");
 			}
-		} while (playerInput != 2 && playerInput != 3 && turnScore != 0);
+		} while (playerInput != 2 && turnScore != 0);
 
 		if (playerScore < 100) {
 			turnScore = 0;
