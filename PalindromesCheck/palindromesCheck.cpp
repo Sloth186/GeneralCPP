@@ -15,19 +15,16 @@ int main() {
 	std::cout << "Enter string: ";
 	std::getline(std::cin, input);
 
-	for (auto c : input) {
-		queue.emplace(c);
-		stack.emplace(c);
+	for (const auto c : input) {
+		if (std::isalpha(c)) {
+			queue.emplace(std::toupper(c));
+			stack.emplace(std::toupper(c));
+		}
 	}
 
 	bool flag = true;
-	while (!queue.empty() && flag) {
-		while (queue.front() < 'A' || (queue.front() > 'Z' && queue.front() < 'a') || queue.front() > 'z')
-			queue.pop();
-		while (stack.top() < 'A' || (stack.top() > 'Z' && stack.top() < 'a') || stack.top() > 'z')
-			stack.pop();
-
-		if (toupper(queue.front()) != toupper(stack.top()))
+	while (flag && !queue.empty()) {
+		if (queue.front() != stack.top())
 			flag = false;
 
 		queue.pop();
